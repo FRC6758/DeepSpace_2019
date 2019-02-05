@@ -36,7 +36,7 @@ public class BrushlessMotor extends CANSparkMax{
     }
 
     public void reset(){
-        offset += encoder.getPosition();
+        offset = encoder.getPosition();
     }
 
     public double getRaw(){
