@@ -20,10 +20,10 @@ import frc.robot.extra.BrushlessMotor;
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private static BrushlessMotor FL = new BrushlessMotor(3);
-  private static BrushlessMotor FR = new BrushlessMotor(0);
-  private static BrushlessMotor BL = new BrushlessMotor(2);
-  private static BrushlessMotor BR = new BrushlessMotor(1);
+  public static BrushlessMotor FL = new BrushlessMotor(3);
+  public static BrushlessMotor FR = new BrushlessMotor(0);
+  public static BrushlessMotor BL = new BrushlessMotor(2);
+  public static BrushlessMotor BR = new BrushlessMotor(1);
 
   private static SpeedControllerGroup leftMotor = new SpeedControllerGroup(FL, BL);
   private static SpeedControllerGroup rightMotor = new SpeedControllerGroup(FR, BR);
