@@ -29,5 +29,7 @@ public class RobotMap {
   public static final int ELEVATOR_DOWN = 3;
   public static final double ELEVATOR_SPEED_UP = .8;
   public static final double ELEVATOR_SPEED_DOWN = .4;
+  public static final double AUTON_SPEED = .8;
+
 
 }
