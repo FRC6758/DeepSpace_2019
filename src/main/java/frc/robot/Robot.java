@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_drivetrain = new DriveTrain();
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  public static Elevator m_elevator = new Elevator();
 
   /**
    * This function is run when the robot is first started up and should be
