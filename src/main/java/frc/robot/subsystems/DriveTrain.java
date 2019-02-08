@@ -25,8 +25,8 @@ public class DriveTrain extends Subsystem {
   private static BrushlessMotor BL = new BrushlessMotor(2);
   private static BrushlessMotor BR = new BrushlessMotor(1);
 
-  private static SpeedControllerGroup leftMotor = new SpeedControllerGroup(FL, BL);
-  private static SpeedControllerGroup rightMotor = new SpeedControllerGroup(FR, BR);
+  public static SpeedControllerGroup leftMotor = new SpeedControllerGroup(FL, BL);
+  public static SpeedControllerGroup rightMotor = new SpeedControllerGroup(FR, BR);
 
   public static DifferentialDrive drive = new DifferentialDrive(leftMotor, rightMotor);
 
@@ -35,4 +35,22 @@ public class DriveTrain extends Subsystem {
     // Set the default command for a subsystem here.
      setDefaultCommand(new Drive());
   }
+  public void resetEncoders(){
+    FL.reset();
+    FR.reset();
+    BL.reset();
+    BR.reset();
+  }
+  public double getLeft(){
+    return FL.getDistance() + BL.getDistance() / 2;
+    
+  }
+  public double getRight(){
+    return FR.getDistance() + BR.getDistance() / 2; 
+  }
+public void stop() {
+  leftMotor.stopMotor();
+  rightMotor.stopMotor();
+}
+
 }
