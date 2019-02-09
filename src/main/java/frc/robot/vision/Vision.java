@@ -13,7 +13,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import com.google.gson.Gson;
 
@@ -23,6 +22,7 @@ import com.google.gson.Gson;
 public class Vision implements Runnable {
 
     public static RIOCommand command = RIOCommand.NONE;
+    public static double distanceFromTarget = 0;
     private static DatagramSocket sock;
     public static boolean active = true;
     public static Vision v;

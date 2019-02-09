@@ -7,12 +7,10 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.OperationElevator;
+import frc.robot.extra.BrushlessMotor;
 
 /**
  * Add your docs here.
@@ -20,8 +18,7 @@ import frc.robot.commands.OperationElevator;
 public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  public CANSparkMax m_elevator = new CANSparkMax(RobotMap.ELEVATOR_MOTOR, MotorType.kBrushless);
+  public BrushlessMotor elevator = new BrushlessMotor(RobotMap.ELEVATOR_MOTOR);
 
   @Override
   public void initDefaultCommand() {
