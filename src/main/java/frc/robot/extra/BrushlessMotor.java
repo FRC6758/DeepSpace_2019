@@ -17,6 +17,7 @@ public class BrushlessMotor extends CANSparkMax{
 
     private static final int PULSES_PER_INCH = 24;
     private static final double CONVERSTION_FACTOR = .00243;
+    private static final double ANGLE_FACTOR = 1;
     private static double offset;
     CANEncoder encoder;
 
@@ -45,6 +46,10 @@ public class BrushlessMotor extends CANSparkMax{
 
     public double getPosition(){
         return encoder.getPosition() - offset;
+    }
+
+    public double getAngle(){
+        return (encoder.getPosition() - offset) / ANGLE_FACTOR;
     }
 
     public double getDistance(){
