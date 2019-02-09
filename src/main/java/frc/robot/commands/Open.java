@@ -8,45 +8,35 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.subsystems.DriveTrain;
 
-public class TurnCCW extends Command {
-  private int goal;
-  public TurnCCW(int angle) {
-    goal = angle;
+public class Open extends Command {
+  public Open() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_drivetrain);
+    requires(Robot.grabber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  Robot.m_drivetrain.resetEncoders();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_drivetrain.getLeftAngle() > goal) DriveTrain.leftMotor.set(-RobotMap.AUTON_SPEED);
-    else DriveTrain.leftMotor.stopMotor();
-    if (Robot.m_drivetrain.getRightAngle() < goal) DriveTrain.rightMotor.set(RobotMap.AUTON_SPEED);
-    else DriveTrain.rightMotor.stopMotor();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Robot.m_drivetrain.getLeftAngle() < goal && Robot.m_drivetrain.getRightAngle() > goal) || OI.stick.getY() > .1 || OI.stick.getY() < -.1;
+    return Robot.m_grabber.enc.getRaw() <= 0;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_drivetrain.stop();
-    System.out.println("TurnCCW Completed");
   }
 
   // Called when another command which requires one or more of the same

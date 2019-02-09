@@ -52,5 +52,12 @@ public void stop() {
   leftMotor.stopMotor();
   rightMotor.stopMotor();
 }
+  public double getRightAngle(){
+    return (FR.getAngle() + BR.getAngle()) / 2; 
+  }
+
+  public double getLeftAngle(){
+    return (FL.getAngle() + BL.getAngle() / 2);
+  }
 
 }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 
 public class OperationElevator extends Command {
   public OperationElevator() {
@@ -27,9 +28,11 @@ public class OperationElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP)) Robot.m_elevator.m_elevator.set(RobotMap.ELEVATOR_SPEED_UP);
-    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN)) Robot.m_elevator.m_elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
-    else Robot.m_elevator.m_elevator.set(0);
+    //ADDED: bottom and top limits to avoid damage
+    //TODO: Continue to run motor at .1 to keep it up 
+    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Robot.m_elevator.elevator.getPosition() < 120) Robot.m_elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
+    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Robot.m_elevator.elevator.getPosition() > 0) Robot.m_elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
+    else Robot.m_elevator.elevator.set(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

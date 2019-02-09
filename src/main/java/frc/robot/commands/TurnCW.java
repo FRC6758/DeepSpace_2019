@@ -30,16 +30,16 @@ public class TurnCW extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_drivetrain.getLeft() < goal) DriveTrain.leftMotor.set(RobotMap.AUTON_SPEED);
+    if (Robot.m_drivetrain.getLeftAngle() < goal) DriveTrain.leftMotor.set(RobotMap.AUTON_SPEED);
     else DriveTrain.leftMotor.stopMotor();
-    if (Robot.m_drivetrain.getRight() > goal) DriveTrain.rightMotor.set(-RobotMap.AUTON_SPEED);
+    if (Robot.m_drivetrain.getRightAngle() > goal) DriveTrain.rightMotor.set(-RobotMap.AUTON_SPEED);
     else DriveTrain.rightMotor.stopMotor();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Robot.m_drivetrain.getLeft() > goal && Robot.m_drivetrain.getRight() < goal) || OI.stick.getY() > .1 || OI.stick.getY() < -.1;
+    return (Robot.m_drivetrain.getLeftAngle() > goal && Robot.m_drivetrain.getRightAngle() < goal) || OI.stick.getY() > .1 || OI.stick.getY() < -.1;
   }
 
   // Called once after isFinished returns true
