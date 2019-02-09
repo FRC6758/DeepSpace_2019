@@ -48,12 +48,13 @@ public class Vision implements Runnable {
             //System.out.println(str);
             CommandPacket pack2 = gson.fromJson(str, CommandPacket.class);
             command = RIOCommand.valueOf(pack2.command);
+            distanceFromTarget = pack2.distance;
         }
     }
 
     static class CommandPacket {
         public String command;
-        public Object distance;
+        public double distance;
     }
 
     public static void startRecieve() {
