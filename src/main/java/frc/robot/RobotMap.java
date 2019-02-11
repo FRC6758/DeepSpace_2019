@@ -32,5 +32,6 @@ public class RobotMap {
   public static final double ELEVATOR_ENCODER_L1 = 100;
   public static final double ELEVATOR_ENCODER_L2 = 200;
   public static final double ELEVATOR_ENCODER_L3 = 300;
+  public static final double ELEVATOR_ENCODER_CR = 300;
 
 }
