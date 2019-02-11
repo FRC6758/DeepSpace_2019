@@ -14,7 +14,7 @@ import frc.robot.RobotMap;
 public class CargoLevelThree extends Command {
   public CargoLevelThree() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.m_elevator);
   }
 
   // Called just before this Command runs the first time
