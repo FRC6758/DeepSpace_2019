@@ -29,14 +29,16 @@ public class RobotMap {
   public static final int ELEVATOR_DOWN = 3;
   public static final double ELEVATOR_SPEED_UP = .8;
   public static final double ELEVATOR_SPEED_DOWN = .4;
-<<<<<<< HEAD
   public static final double AUTON_SPEED = .8;
 
-=======
-  public static final double ELEVATOR_ENCODER_L1 = 100;
-  public static final double ELEVATOR_ENCODER_L2 = 200;
-  public static final double ELEVATOR_ENCODER_L3 = 300;
-  public static final double ELEVATOR_ENCODER_CR = 300;
->>>>>>> 3682b998c691bf35d85299edbd7ca63c7c54c430
+  public static final double ELEVATOR_ENCODER_CL1 = 40;
+  public static final double ELEVATOR_ENCODER_CL2 = 80;
+  public static final double ELEVATOR_ENCODER_CL3 = 120;
+  public static final double ELEVATOR_ENCODER_CR = 40;
+  
+  public static final double ELEVATOR_ENCODER_HL1 = 40;
+  public static final double ELEVATOR_ENCODER_HL2 = 80;
+  public static final double ELEVATOR_ENCODER_HL3 = 120;
+  public static final double ELEVATOR_ENCODER_HR = 40;
 
 }

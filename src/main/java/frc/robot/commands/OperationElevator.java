@@ -11,9 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.elevator.GoToEncPoint;
 import frc.robot.subsystems.Elevator;
 
 public class OperationElevator extends Command {
+
+  private GoToEncPoint activeCommand;
+
   public OperationElevator() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -30,9 +34,21 @@ public class OperationElevator extends Command {
   protected void execute() {
     //ADDED: bottom and top limits to avoid damage
     //TODO: Continue to run motor at .1 to keep it up 
-    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Robot.m_elevator.elevator.getPosition() < 120) Robot.m_elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
-    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Robot.m_elevator.elevator.getPosition() > 0) Robot.m_elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
-    else Robot.m_elevator.elevator.set(0);
+    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Robot.m_elevator.m_elevator.getPosition() < 120) Robot.m_elevator.m_elevator.set(RobotMap.ELEVATOR_SPEED_UP);
+    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Robot.m_elevator.m_elevator.getPosition() > 0) Robot.m_elevator.m_elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
+    else {
+      if(activeCommand == null || activeCommand.isCompleted())
+      {
+        Robot.m_elevator.m_elevator.set(0);
+        return;
+      }
+      else if(OI.stick.getRawButton(7)) activeCommand = new GoToEncPoint(RobotMap.ELEVATOR_ENCODER_CL1);
+      else if(OI.stick.getRawButton(9)) activeCommand = new GoToEncPoint(RobotMap.ELEVATOR_ENCODER_CL2);
+      else if(OI.stick.getRawButton(11)) activeCommand = new GoToEncPoint(RobotMap.ELEVATOR_ENCODER_CL3);
+      else if(OI.stick.getRawButton(8)) activeCommand = new GoToEncPoint(RobotMap.ELEVATOR_ENCODER_HL1);
+      else if(OI.stick.getRawButton(10)) activeCommand = new GoToEncPoint(RobotMap.ELEVATOR_ENCODER_HL2);
+      else if(OI.stick.getRawButton(12)) activeCommand = new GoToEncPoint(RobotMap.ELEVATOR_ENCODER_HL3);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
