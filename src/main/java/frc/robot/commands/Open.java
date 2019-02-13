@@ -13,7 +13,7 @@ import frc.robot.Robot;
 public class Open extends Command {
   public Open() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.grabber);
+    requires(Robot.m_grabber);
   }
 
   // Called just before this Command runs the first time

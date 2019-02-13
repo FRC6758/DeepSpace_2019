@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -21,8 +21,8 @@ public class Grabber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public static VictorSPX arms = new VictorSPX(0);
-  public static VictorSPX kicker = new VictorSPX(0);
+  public static TalonSRX arms = new TalonSRX(30);
+  public static TalonSRX kicker = new TalonSRX(31);
   public static Solenoid puncher = new Solenoid(0);
 
   public static Encoder enc = new Encoder(0, 1);
