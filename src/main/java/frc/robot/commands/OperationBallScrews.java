@@ -29,9 +29,9 @@ public class OperationBallScrews extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.stick.getRawButton(RobotMap.SCREW_ONE_DOWN)) ;
-    else if(OI.stick.getRawButton(RobotMap.SCREW_ONE_UP)) ;
-    if(OI.stick.getRawButton(RobotMap.SCREW_TWO_DOWN)) ;
+    if(OI.stick.getRawButton(RobotMap.SCREW_ONE_DOWN)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.SCREW_SPEED);
+    else if(OI.stick.getRawButton(RobotMap.SCREW_ONE_UP)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
+    if(OI.stick.getRawButton(RobotMap.SCREW_TWO_DOWN)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
     else if(OI.stick.getRawButton(RobotMap.SCREW_TWO_UP)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
     if(OI.stick.getRawButton(RobotMap.SCREW_UP)) Robot.m_ballScrews.up();
     else if(OI.stick.getRawButton(RobotMap.SCREW_DOWN)) Robot.m_ballScrews.down();

@@ -25,6 +25,8 @@ public class RobotMap {
   //Buttons
   public static final int ELEVATOR_UP = 5;
   public static final int ELEVATOR_DOWN = 3;
+  
+  //Encoder Values
   public static final int ELEVATOR_TOP_LIMIT = 120;
   public static final int ELEVATOR_BOTTOM_LIMIT = 0;
   
