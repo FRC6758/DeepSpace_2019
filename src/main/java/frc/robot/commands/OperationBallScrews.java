@@ -7,17 +7,18 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.BallScrews;
 
-public class OperationElevator extends Command {
-  public OperationElevator() {
+public class OperationBallScrews extends Command {
+  public OperationBallScrews() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.m_elevator);
+    requires(Robot.m_ballScrews);
   }
 
   // Called just before this Command runs the first time
@@ -28,11 +29,12 @@ public class OperationElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //ADDED: bottom and top limits to avoid damage
-    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Elevator.elevator.getPosition() < RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
-    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Elevator.elevator.getPosition() > RobotMap.ELEVATOR_BOTTOM_LIMIT) Elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
-    else if (Elevator.elevator.getPosition() > 30 && Elevator.elevator.getPosition()< RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_STALL_POWER);
-    else Elevator.elevator.stopMotor();
+    if(OI.stick.getRawButton(RobotMap.SCREW_ONE_DOWN)) ;
+    else if(OI.stick.getRawButton(RobotMap.SCREW_ONE_UP)) ;
+    if(OI.stick.getRawButton(RobotMap.SCREW_TWO_DOWN)) ;
+    else if(OI.stick.getRawButton(RobotMap.SCREW_TWO_UP)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
+    if(OI.stick.getRawButton(RobotMap.SCREW_UP)) Robot.m_ballScrews.up();
+    else if(OI.stick.getRawButton(RobotMap.SCREW_DOWN)) Robot.m_ballScrews.down();
   }
 
   // Make this return true when this Command no longer needs to run execute()
