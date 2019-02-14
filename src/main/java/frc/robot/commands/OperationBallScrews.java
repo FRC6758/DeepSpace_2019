@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -29,12 +30,17 @@ public class OperationBallScrews extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.stick.getRawButton(RobotMap.SCREW_ONE_DOWN)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.SCREW_SPEED);
-    else if(OI.stick.getRawButton(RobotMap.SCREW_ONE_UP)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
-    if(OI.stick.getRawButton(RobotMap.SCREW_TWO_DOWN)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
-    else if(OI.stick.getRawButton(RobotMap.SCREW_TWO_UP)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
-    if(OI.stick.getRawButton(RobotMap.SCREW_UP)) Robot.m_ballScrews.up();
-    else if(OI.stick.getRawButton(RobotMap.SCREW_DOWN)) Robot.m_ballScrews.down();
+    int pov = OI.controller.getPOV();
+
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
+    else BallScrews.BallScrewOne.set(ControlMode.PercentOutput, -OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
+
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);     
+    else BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, -OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
+
+    if(pov > 345 || pov < 15) Robot.m_ballScrews.up();
+    else if(pov < 190 && pov > 170) Robot.m_ballScrews.down();
+    else Robot.m_ballScrews.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()

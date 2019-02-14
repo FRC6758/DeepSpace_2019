@@ -39,4 +39,8 @@ public class BallScrews extends Subsystem {
     BallScrewOne.set(ControlMode.PercentOutput, 1);
     BallScrewTwo.set(ControlMode.PercentOutput, 1);
   }
+  public void stop(){
+    BallScrewOne.set(ControlMode.PercentOutput, 0);
+    BallScrewTwo.set(ControlMode.PercentOutput, 0);
+  }
 }

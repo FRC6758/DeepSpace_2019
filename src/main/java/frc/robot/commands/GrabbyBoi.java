@@ -8,14 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-<<<<<<< HEAD
-import frc.robot.Robot;
-=======
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
->>>>>>> 7bf2d9133d5305fb0eac2b54ad78bdd46d00d4ca
 
 public class GrabbyBoi extends Command {
   public GrabbyBoi() {
@@ -31,10 +27,12 @@ public class GrabbyBoi extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.stick.getRawButton(RobotMap.OPEN_GRABBER)) Robot.m_grabber.open();
-    else if(OI.stick.getRawButton(RobotMap.CLOSE_GRABBER)) Robot.m_grabber.grab();
+    int pov = OI.stick.getPOV(); 
+    if(pov > 350 || pov < 10) Robot.m_grabber.open();
+    else if(pov < 190 && pov > 170) Robot.m_grabber.grab();
     if(OI.stick.getRawButton(RobotMap.HATCH_KICKER)) Robot.m_grabber.dispenseHatch();
     else if(OI.stick.getRawButton(RobotMap.CARGO_KICKER)) Robot.m_grabber.dispenseCargo();
+    else if(OI.stick.getRawButton(RobotMap.CARGO_SUCKER)) Robot.m_grabber.suckCargo();
   }
 
   // Make this return true when this Command no longer needs to run execute()

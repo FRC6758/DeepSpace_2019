@@ -39,8 +39,11 @@ public class Grabber extends Subsystem {
     kicker.set(ControlMode.PercentOutput, RobotMap.KICKER_SPEED);
   }
 
-  public void grab(){
+  public void suckCargo(){
     kicker.set(ControlMode.PercentOutput, -RobotMap.KICKER_SPEED);
+  }
+
+  public void grab(){
     arms.set(ControlMode.PercentOutput, -RobotMap.ARM_SPEED);
   }
 

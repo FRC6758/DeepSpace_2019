@@ -23,11 +23,18 @@ public class RobotMap {
   public static final int ELEVATOR_MOTOR = 4;
 
   //Buttons
-  public static final int ELEVATOR_UP = 5;
-  public static final int ELEVATOR_DOWN = 3;
+  public static final int ELEVATOR_UP = 6;
+  public static final int ELEVATOR_DOWN = 4;
+
+  public static final int HATCH_LVL_1 = 8;
+  public static final int HATCH_LVL_2 = 10;
+  public static final int HATCH_LVL_3 = 12;
+  public static final int CARGO_LVL_1 = 7;
+  public static final int CARGO_LVL_2 = 9;
+  public static final int CARGO_LVL_3 = 11;
   
   //Encoder Values
-  public static final int ELEVATOR_TOP_LIMIT = 120;
+  public static final int ELEVATOR_TOP_LIMIT = 80;
   public static final int ELEVATOR_BOTTOM_LIMIT = 0;
   
   //Speeds
@@ -39,10 +46,11 @@ public class RobotMap {
 
   //===GRABBER CONTROLS===
   //Buttons           
-  public static final int OPEN_GRABBER = 0;
-  public static final int CLOSE_GRABBER = 0;
-  public static final int HATCH_KICKER = 0;      //TODO: SET THESE!!
-  public static final int CARGO_KICKER = 0;
+  public static final int OPEN_GRABBER = 00; //PID UP
+  public static final int CLOSE_GRABBER = 00; //PID DOWN
+  public static final int HATCH_KICKER = 2;     
+  public static final int CARGO_KICKER = 5;
+  public static final int CARGO_SUCKER = 3;
 
   //Motor Controllers
   public static final int ARM_CONTROLLER = 30;
@@ -54,12 +62,12 @@ public class RobotMap {
 
   //===BALL SCREW CONTROLS===
   //Buttons
-  public static final int SCREW_ONE_DOWN = 0;
-  public static final int SCREW_ONE_UP = 0;
-  public static final int SCREW_TWO_DOWN = 0; //TODO: SET THESE!!
-  public static final int SCREW_TWO_UP = 0;
-  public static final int SCREW_UP = 0;
-  public static final int SCREW_DOWN = 0;
+  public static final int SCREW_ONE_DOWN = 0; //Right Trigger
+  public static final int SCREW_ONE_UP = 0; //Right Bumper
+  public static final int SCREW_TWO_DOWN = 0; //Left Trigger
+  public static final int SCREW_TWO_UP = 0; //Left Bumper
+  public static final int SCREW_UP = 0; //Using D-pad
+  public static final int SCREW_DOWN = 0; //Using D-pad
 
   //Motor Controllers
   public static final int SCREW_ONE_CONTROLLER = 32;
