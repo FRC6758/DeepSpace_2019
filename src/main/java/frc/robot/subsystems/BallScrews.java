@@ -33,11 +33,13 @@ public class BallScrews extends Subsystem {
   public void up(){
     BallScrewOne.set(ControlMode.PercentOutput, -1);
     BallScrewTwo.set(ControlMode.PercentOutput, -1);
+    if(!(Elevator.elevator.getPosition() < 10)) System.out.println("PUT ELEVATOR DOWN BEFORE USING BALL SCREWS!");
   }
 
   public void down(){
     BallScrewOne.set(ControlMode.PercentOutput, 1);
     BallScrewTwo.set(ControlMode.PercentOutput, 1);
+    if(!(Elevator.elevator.getPosition() < 10)) System.out.println("PUT ELEVATOR DOWN BEFORE USING BALL SCREWS!");
   }
   public void stop(){
     BallScrewOne.set(ControlMode.PercentOutput, 0);

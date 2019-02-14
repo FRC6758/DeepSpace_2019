@@ -16,13 +16,13 @@ import frc.robot.subsystems.Elevator;
 public class OperationElevator extends Command {
   public OperationElevator() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.m_elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+      //TODO: YOU NEED TO FIND ZERO (that may not go here but it needs to happen at some point)
   }
 
   // Called repeatedly when this Command is scheduled to run

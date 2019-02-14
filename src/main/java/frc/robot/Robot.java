@@ -24,6 +24,14 @@ import frc.robot.subsystems.Grabber;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+ //TODO:
+ //ELEVATOR ZERO
+ //GYRO
+ //FIGURE OUT ENCODER VALUES
+      //Elevator
+      //Driving in inches
+      //Driving in degrees
 public class Robot extends TimedRobot {
   public static BallScrews m_ballScrews = new BallScrews();
   public static OI m_oi;
