@@ -10,45 +10,33 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.GrabbyBoi;
+import frc.robot.commands.OperationBallScrews;
 
 /**
  * Add your docs here.
  */
-public class Grabber extends Subsystem {
+public class BallScrews extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public static TalonSRX arms = new TalonSRX(RobotMap.ARM_CONTROLLER);
-  public static TalonSRX kicker = new TalonSRX(RobotMap.FLYWHEELS_CONTROLLER);
-  public static Solenoid puncher = new Solenoid(0);
-
-  public static Encoder enc = new Encoder(0, 1);
+  public static TalonSRX BallScrewOne = new TalonSRX(RobotMap.SCREW_ONE_CONTROLLER);
+  public static TalonSRX BallScrewTwo = new TalonSRX(RobotMap.SCREW_TWO_CONTROLLER);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new GrabbyBoi());
+    setDefaultCommand(new OperationBallScrews());
   }
 
-  public void dispenseCargo(){
-    kicker.set(ControlMode.PercentOutput, RobotMap.KICKER_SPEED);
+  public void up(){
+    BallScrewOne.set(ControlMode.PercentOutput, -1);
+    BallScrewTwo.set(ControlMode.PercentOutput, -1);
   }
 
-  public void grab(){
-    kicker.set(ControlMode.PercentOutput, -RobotMap.KICKER_SPEED);
-    arms.set(ControlMode.PercentOutput, -RobotMap.ARM_SPEED);
-  }
-
-  public void open(){
-    arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
-  }
-
-  public void dispenseHatch(){
-    puncher.set(true);
+  public void down(){
+    BallScrewOne.set(ControlMode.PercentOutput, 1);
+    BallScrewTwo.set(ControlMode.PercentOutput, 1);
   }
 }

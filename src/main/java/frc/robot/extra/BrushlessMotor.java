@@ -53,7 +53,7 @@ public class BrushlessMotor extends CANSparkMax{
     }
 
     public double getDistance(){
-        return encoder.getPosition() - offset / PULSES_PER_INCH;
+        return (encoder.getPosition() - offset) / PULSES_PER_INCH;
     }
 
 }

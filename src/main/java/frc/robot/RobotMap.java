@@ -14,22 +14,57 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
-
-  public static final int ELEVATOR_MOTOR = 4;
-  public static final int ELEVATOR_UP = 5;
-  public static final int ELEVATOR_DOWN = 3;
-  public static final double ELEVATOR_SPEED_UP = .8;
-  public static final double ELEVATOR_SPEED_DOWN = .4;
+  //Speeds
   public static final double AUTON_SPEED = .8;
 
+  //===ELEVATOR CONTROLS===
+  //Motor Controllers
+  public static final int ELEVATOR_MOTOR = 4;
 
+  //Buttons
+  public static final int ELEVATOR_UP = 5;
+  public static final int ELEVATOR_DOWN = 3;
+  
+  //Encoder Values
+  public static final int ELEVATOR_TOP_LIMIT = 120;
+  public static final int ELEVATOR_BOTTOM_LIMIT = 0;
+  
+  //Speeds
+  public static final double ELEVATOR_SPEED_UP = .8;
+  public static final double ELEVATOR_SPEED_DOWN = .4;
+  public static final double ELEVATOR_STALL_POWER = .15;
+  public static final double ANTITIP_1 = .5;
+  public static final double ANTITIP_2 = .2;
+
+  //===GRABBER CONTROLS===
+  //Buttons           
+  public static final int OPEN_GRABBER = 0;
+  public static final int CLOSE_GRABBER = 0;
+  public static final int HATCH_KICKER = 0;      //TODO: SET THESE!!
+  public static final int CARGO_KICKER = 0;
+
+  //Motor Controllers
+  public static final int ARM_CONTROLLER = 30;
+  public static final int FLYWHEELS_CONTROLLER = 31;
+
+  //Speeds
+  public static final double KICKER_SPEED = .8;
+  public static final double ARM_SPEED = .4;
+
+  //===BALL SCREW CONTROLS===
+  //Buttons
+  public static final int SCREW_ONE_DOWN = 0;
+  public static final int SCREW_ONE_UP = 0;
+  public static final int SCREW_TWO_DOWN = 0; //TODO: SET THESE!!
+  public static final int SCREW_TWO_UP = 0;
+  public static final int SCREW_UP = 0;
+  public static final int SCREW_DOWN = 0;
+
+  //Motor Controllers
+  public static final int SCREW_ONE_CONTROLLER = 32;
+  public static final int SCREW_TWO_CONTROLLER = 33;
+
+  //Speeds
+  public static final double SCREW_SPEED = .9;
 }

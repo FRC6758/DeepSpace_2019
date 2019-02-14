@@ -7,31 +7,40 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
-public class Open extends Command {
-  public Open() {
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.BallScrews;
+
+public class OperationBallScrews extends Command {
+  public OperationBallScrews() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_grabber);
+    requires(Robot.m_ballScrews);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    if(OI.stick.getRawButton(RobotMap.SCREW_ONE_DOWN)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.SCREW_SPEED);
+    else if(OI.stick.getRawButton(RobotMap.SCREW_ONE_UP)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
+    if(OI.stick.getRawButton(RobotMap.SCREW_TWO_DOWN)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
+    else if(OI.stick.getRawButton(RobotMap.SCREW_TWO_UP)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
+    if(OI.stick.getRawButton(RobotMap.SCREW_UP)) Robot.m_ballScrews.up();
+    else if(OI.stick.getRawButton(RobotMap.SCREW_DOWN)) Robot.m_ballScrews.down();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_grabber.enc.getRaw() <= 0;
+    return false;
   }
 
   // Called once after isFinished returns true
