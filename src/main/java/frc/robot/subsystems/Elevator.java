@@ -18,7 +18,7 @@ import frc.robot.extra.BrushlessMotor;
 public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public BrushlessMotor elevator = new BrushlessMotor(RobotMap.ELEVATOR_MOTOR);
+  public static BrushlessMotor elevator = new BrushlessMotor(RobotMap.ELEVATOR_MOTOR);
 
   @Override
   public void initDefaultCommand() {

@@ -8,11 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.DriveTrain;
 
 public class GrabbyBoi extends Command {
   public GrabbyBoi() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.m_grabber);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +27,10 @@ public class GrabbyBoi extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(OI.stick.getRawButton(RobotMap.OPEN_GRABBER)) Robot.m_grabber.open();
+    else if(OI.stick.getRawButton(RobotMap.CLOSE_GRABBER)) Robot.m_grabber.grab();
+    if(OI.stick.getRawButton(RobotMap.HATCH_KICKER)) Robot.m_grabber.dispenseHatch();
+    else if(OI.stick.getRawButton(RobotMap.CARGO_KICKER)) Robot.m_grabber.dispenseCargo();
   }
 
   // Make this return true when this Command no longer needs to run execute()

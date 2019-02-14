@@ -30,9 +30,10 @@ public class OperationElevator extends Command {
   protected void execute() {
     //ADDED: bottom and top limits to avoid damage
     //TODO: Continue to run motor at .1 to keep it up 
-    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Robot.m_elevator.elevator.getPosition() < 120) Robot.m_elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
-    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Robot.m_elevator.elevator.getPosition() > 0) Robot.m_elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
-    else Robot.m_elevator.elevator.set(0);
+    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Elevator.elevator.getPosition() < 120) Elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
+    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Elevator.elevator.getPosition() > 0) Elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
+    else if (Elevator.elevator.getPosition() > 30) Elevator.elevator.set(RobotMap.ELEVATOR_STALL_POWER);
+    else Elevator.elevator.set(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
