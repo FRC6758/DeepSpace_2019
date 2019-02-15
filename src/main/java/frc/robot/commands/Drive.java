@@ -10,6 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 
 public class Drive extends Command {
   public Drive() {
@@ -25,9 +28,9 @@ public class Drive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-  Robot.m_drivetrain.drive.arcadeDrive(OI.stick.getY(), OI.stick.getTwist());
-
+    if(Elevator.elevator.getPosition() > 60) DriveTrain.drive.arcadeDrive(OI.stick.getY()*RobotMap.ANTITIP_2, OI.stick.getTwist()*RobotMap.ANTITIP_2);
+    else if(Elevator.elevator.getPosition() > 30) DriveTrain.drive.arcadeDrive(OI.stick.getY()*RobotMap.ANTITIP_1, OI.stick.getTwist()*RobotMap.ANTITIP_1);
+    else DriveTrain.drive.arcadeDrive(OI.stick.getY(), OI.stick.getTwist());
   }
 
   // Make this return true when this Command no longer needs to run execute()

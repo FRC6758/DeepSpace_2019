@@ -11,28 +11,28 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.DriveTrain;
 
-public class OperationElevator extends Command {
-  public OperationElevator() {
+public class GrabbyBoi extends Command {
+  public GrabbyBoi() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_elevator);
+    requires(Robot.m_grabber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      //TODO: YOU NEED TO FIND ZERO (that may not go here but it needs to happen at some point)
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //ADDED: bottom and top limits to avoid damage
-    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Elevator.elevator.getPosition() < RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
-    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Elevator.elevator.getPosition() > RobotMap.ELEVATOR_BOTTOM_LIMIT) Elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
-    else if (Elevator.elevator.getPosition() > 30 && Elevator.elevator.getPosition()< RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_STALL_POWER);
-    else Elevator.elevator.stopMotor();
+    int pov = OI.stick.getPOV(); 
+    if(pov > 350 || pov < 10) Robot.m_grabber.open();
+    else if(pov < 190 && pov > 170) Robot.m_grabber.grab();
+    if(OI.stick.getRawButton(RobotMap.HATCH_KICKER)) Robot.m_grabber.dispenseHatch();
+    else if(OI.stick.getRawButton(RobotMap.CARGO_KICKER)) Robot.m_grabber.dispenseCargo();
+    else if(OI.stick.getRawButton(RobotMap.CARGO_SUCKER)) Robot.m_grabber.suckCargo();
   }
 
   // Make this return true when this Command no longer needs to run execute()

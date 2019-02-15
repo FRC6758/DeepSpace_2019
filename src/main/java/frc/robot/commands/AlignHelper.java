@@ -32,8 +32,8 @@ public class AlignHelper extends CommandGroup {
         new AlignHelper();
       break;
       case ALIGNED:
-        addSequential(new DriveForward(1));
-      break;
+        addSequential(new DriveForward(Vision.distanceFromTarget));
+      return;
     }
   }
 }
