@@ -7,54 +7,39 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.subsystems.BallScrews;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Grabber;
 
-public class OperationBallScrews extends Command {
-  public OperationBallScrews() {
+public class dispenseHatch extends Command {
+  public dispenseHatch() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_ballScrews);
+    requires(Robot.m_grabber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setTimeout(3);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   // int pov = OI.controller.getPOV();
-
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
-    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft) > 0) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.SCREW_SPEED);
-
-    if(OI.controller.getBumper(GenericHID.Hand.kRight)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);     
-    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kRight) > 0) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, -RobotMap.SCREW_SPEED);
-
-    if(OI.controller.getXButton()) Robot.m_ballScrews.up();
-    else if(OI.controller.getYButton()) Robot.m_ballScrews.down();
-    else Robot.m_ballScrews.stop();
-
-    // if(OI.controller.getAButton()) Robot.m_ballScrews.forward();
-    // else Robot.m_ballScrews.stopForward();
+    Robot.m_grabber.pushHatch();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_grabber.pullHatch();
   }
 
   // Called when another command which requires one or more of the same

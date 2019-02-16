@@ -7,6 +7,8 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -28,11 +30,14 @@ public class GrabbyBoi extends Command {
   @Override
   protected void execute() {
     int pov = OI.stick.getPOV(); 
-    if(pov > 350 || pov < 10) Robot.m_grabber.open();
-    else if(pov < 190 && pov > 170) Robot.m_grabber.grab();
-    if(OI.stick.getRawButton(RobotMap.HATCH_KICKER)) Robot.m_grabber.dispenseHatch();
-    else if(OI.stick.getRawButton(RobotMap.CARGO_KICKER)) Robot.m_grabber.dispenseCargo();
-    else if(OI.stick.getRawButton(RobotMap.CARGO_SUCKER)) Robot.m_grabber.suckCargo();
+    System.out.println("Joystick POV: " + pov);
+    if(pov == 0) Robot.m_grabber.kicker.set(ControlMode.PercentOutput, RobotMap.KICKER_SPEED);
+    else if(pov == 180) Robot.m_grabber.kicker.set(ControlMode.PercentOutput, -RobotMap.KICKER_SPEED);
+    else Robot.m_grabber.kicker.set(ControlMode.PercentOutput, 0);
+    if(OI.stick.getRawButton(1)) Robot.m_grabber.arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
+    else Robot.m_grabber.arms.set(ControlMode.PercentOutput, -.01);
+    if(OI.stick.getRawButton(2) || OI.controller.getAButton()) Robot.m_grabber.pushHatch();
+		else Robot.m_grabber.pullHatch();
   }
 
   // Make this return true when this Command no longer needs to run execute()

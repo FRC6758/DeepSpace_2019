@@ -23,15 +23,25 @@ public class OperationElevator extends Command {
   @Override
   protected void initialize() {
       //TODO: YOU NEED TO FIND ZERO (that may not go here but it needs to happen at some point)
+      Elevator.elevator.setClosedLoopRampRate(5);
+
+      //Robot.m_elevator.zero();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    int pov = OI.controller.getPOV();
+    
+    System.out.println("Encoder VALUES: " + Elevator.elevator.getPosition());
+
     //ADDED: bottom and top limits to avoid damage
-    if(OI.stick.getRawButton(RobotMap.ELEVATOR_UP) && Elevator.elevator.getPosition() < RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
-    else if (OI.stick.getRawButton(RobotMap.ELEVATOR_DOWN) && Elevator.elevator.getPosition() > RobotMap.ELEVATOR_BOTTOM_LIMIT) Elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
-    else if (Elevator.elevator.getPosition() > 30 && Elevator.elevator.getPosition()< RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_STALL_POWER);
+    if(pov == 0 && Elevator.elevator.getPosition() < RobotMap.ELEVATOR_TOP_LIMIT) Elevator
+    .elevator.set(RobotMap.ELEVATOR_SPEED_UP);
+    else if (pov == 180 && Elevator.elevator.getPosition() > RobotMap.ELEVATOR_BOTTOM_LIMIT && Elevator.limit.get()) Elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
+    else if (Elevator.elevator.getPosition() > RobotMap.ELEVATOR_MIDDLE_LIMIT && Elevator.elevator.getPosition()< RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_STALL_POWER);
     else Elevator.elevator.stopMotor();
   }
 

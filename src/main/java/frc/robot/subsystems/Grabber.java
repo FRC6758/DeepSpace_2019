@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.GrabbyBoi;
+import frc.robot.commands.dispenseHatch;
 
 /**
  * Add your docs here.
@@ -25,9 +26,9 @@ public class Grabber extends Subsystem {
 
   public static TalonSRX arms = new TalonSRX(RobotMap.ARM_CONTROLLER);
   public static TalonSRX kicker = new TalonSRX(RobotMap.FLYWHEELS_CONTROLLER);
-  public static Solenoid puncher = new Solenoid(0);
+  public static Solenoid puncher = new Solenoid(7);
 
-  public static Encoder enc = new Encoder(0, 1);
+  //public static Encoder enc = new Encoder(0, 1);
 
   @Override
   public void initDefaultCommand() {
@@ -51,7 +52,13 @@ public class Grabber extends Subsystem {
     arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
   }
 
-  public void dispenseHatch(){
-    puncher.set(true);
+  public void pushHatch(){
+      Grabber.puncher.set(true);
   }
+
+  public void pullHatch(){
+    Grabber.puncher.set(false);
+
+  }
+
 }

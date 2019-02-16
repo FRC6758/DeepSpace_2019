@@ -23,7 +23,7 @@ public class BallScrews extends Subsystem {
 
   public static TalonSRX BallScrewOne = new TalonSRX(RobotMap.SCREW_ONE_CONTROLLER);
   public static TalonSRX BallScrewTwo = new TalonSRX(RobotMap.SCREW_TWO_CONTROLLER);
-
+  //public static TalonSRX driver = new TalonSRX(RobotMap.SCREW_DRIVE_CONTROLLER)
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -45,4 +45,12 @@ public class BallScrews extends Subsystem {
     BallScrewOne.set(ControlMode.PercentOutput, 0);
     BallScrewTwo.set(ControlMode.PercentOutput, 0);
   }
+
+  // public void stopForward(){
+  //   driver.set(ControlMode.PercentOutput, 0);
+  // }
+
+  // public void driveForward(){
+  //   driver.set(ControlMode.PercentOutput, RobotMap.BALL_BOI);
+  // }
 }

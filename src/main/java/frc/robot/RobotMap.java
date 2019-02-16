@@ -19,6 +19,9 @@ public class RobotMap {
   public static final double AUTON_SPEED = .8;
 
   //===ELEVATOR CONTROLS===
+  //DIO
+  public static final int ELEVATOR_LIMIT_SWITCH = 0;
+
   //Motor Controllers
   public static final int ELEVATOR_MOTOR = 4;
 
@@ -34,30 +37,39 @@ public class RobotMap {
   public static final int CARGO_LVL_3 = 11;
   
   //Encoder Values
-  public static final int ELEVATOR_TOP_LIMIT = 80;
+  public static final int HATCH_1 = 0;
+  public static final int HATCH_2 = 0;
+  public static final int HATCH_3 = 0;
+  public static final int CARGO_1 = 0;
+  public static final int CARGO_2 = 0;
+  public static final int CARGO_3 = 0;
+
+  public static final int ELEVATOR_TOP_LIMIT = 106;
+  public static final int ELEVATOR_MIDDLISH_LIMIT = 75;
+  public static final int ELEVATOR_MIDDLE_LIMIT = 35;
   public static final int ELEVATOR_BOTTOM_LIMIT = 0;
   
   //Speeds
-  public static final double ELEVATOR_SPEED_UP = .8;
+  public static final double ELEVATOR_SPEED_UP = .6;
   public static final double ELEVATOR_SPEED_DOWN = .4;
-  public static final double ELEVATOR_STALL_POWER = .15;
-  public static final double ANTITIP_1 = .5;
-  public static final double ANTITIP_2 = .2;
+  public static final double ELEVATOR_STALL_POWER = .05;
+  public static final double ANTITIP_1 = .7;
+  public static final double ANTITIP_2 = .4;
 
   //===GRABBER CONTROLS===
   //Buttons           
   public static final int OPEN_GRABBER = 00; //PID UP
   public static final int CLOSE_GRABBER = 00; //PID DOWN
-  public static final int HATCH_KICKER = 2;     
+  public static final int HATCH_KICKER = 8;     
   public static final int CARGO_KICKER = 5;
   public static final int CARGO_SUCKER = 3;
 
   //Motor Controllers
-  public static final int ARM_CONTROLLER = 30;
-  public static final int FLYWHEELS_CONTROLLER = 31;
+  public static final int ARM_CONTROLLER = 31;
+  public static final int FLYWHEELS_CONTROLLER = 36;
 
   //Speeds
-  public static final double KICKER_SPEED = .8;
+  public static final double KICKER_SPEED = 1;
   public static final double ARM_SPEED = .4;
 
   //===BALL SCREW CONTROLS===
@@ -71,8 +83,10 @@ public class RobotMap {
 
   //Motor Controllers
   public static final int SCREW_ONE_CONTROLLER = 32;
-  public static final int SCREW_TWO_CONTROLLER = 33;
+  public static final int SCREW_TWO_CONTROLLER = 30;
+  public static final int SCREW_GO = 33;
 
   //Speeds
-  public static final double SCREW_SPEED = .9;
+  public static final double SCREW_SPEED = .2;
+  public static final double BALL_BOI = .2;
 }
