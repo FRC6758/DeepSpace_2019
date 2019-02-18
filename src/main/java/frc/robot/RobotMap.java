@@ -14,10 +14,14 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-
-
   //===MISC.===
-  //Controls
+
+  //Debugging
+  public static final boolean DEBUGGING_BALLS = false;
+  public static final boolean GRABBER_DEBUG = false;
+  public static final boolean ELEVATOR_DEBUG = false;
+  public static final boolean DRIVE_DEBUG = false;
+    //Controls
   public static final int JOYSTICK_PORT = 1; //Side note: you can switch which one is
   public static final int CONTROLLER_PORT = 0; //which by clicking and dragging in DS
 
@@ -112,6 +116,7 @@ public class RobotMap {
 
   //Solenoids
   public static final int AIR_BOI = 7;
+  public static final int PRE_AIR_BOI = 0;
 
   //Speeds
   public static final double KICKER_SPEED = 1;

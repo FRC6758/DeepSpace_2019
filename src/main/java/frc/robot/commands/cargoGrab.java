@@ -14,10 +14,10 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Grabber;
 
-public class cargoGrab extends Command {
-  boolean open;
+public class CargoGrab extends Command {
+  private boolean open;
 
-  public cargoGrab() {
+  public CargoGrab() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_grabber);
   }
@@ -25,14 +25,14 @@ public class cargoGrab extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    open = (RobotMap.ARM_90 > Grabber.enc.getRaw());
+    open = (Grabber.enc.getRaw() > RobotMap.ARM_90);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(open) Robot.m_grabber.close();
-    else Robot.m_grabber.open();
+    if(open) Grabber.arms.set(ControlMode.PercentOutput, -RobotMap.ARM_SPEED);
+    else Grabber.arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -52,6 +52,5 @@ public class cargoGrab extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Grabber.arms.set(ControlMode.PercentOutput, 0);
   }
 }

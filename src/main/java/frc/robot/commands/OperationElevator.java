@@ -33,7 +33,10 @@ public class OperationElevator extends Command {
 
     int pov = OI.controller.getPOV();
     
-    System.out.println("Encoder VALUES: " + Elevator.elevator.getPosition());
+    if(RobotMap.ELEVATOR_DEBUG) {
+      //debugging stuff
+      System.out.println("Encoder VALUES: " + Elevator.elevator.getPosition());
+    }
 
     //ADDED: bottom and top limits to avoid damage
     if(pov == 0 && Elevator.elevator.getPosition() < RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);

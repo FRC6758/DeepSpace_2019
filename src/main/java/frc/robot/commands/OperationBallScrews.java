@@ -30,8 +30,14 @@ public class OperationBallScrews extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   // int pov = OI.controller.getPOV();
+    
+    int pov = OI.controller.getPOV();
+    
+    if(RobotMap.DEBUGGING_BALLS) {
+      //debugging stuff
 
+    }
+    
     if(OI.controller.getBumper(GenericHID.Hand.kRight)) Robot.m_ballScrews.downFront();
     else if(OI.controller.getTriggerAxis(GenericHID.Hand.kRight) > 0) Robot.m_ballScrews.upFront(OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
     else BallScrews.BallScrewOne.set(ControlMode.PercentOutput, 0);

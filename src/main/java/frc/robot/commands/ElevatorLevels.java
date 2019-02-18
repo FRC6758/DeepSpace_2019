@@ -54,7 +54,6 @@ public class ElevatorLevels extends Command {
             System.out.println("NOT A LEVEL!");
                 break;
         }
-        System.out.println("LEVEL: " + goal);
         up = goal > Elevator.elevator.getPosition();
   }
 
