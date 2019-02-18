@@ -11,6 +11,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.RobotMap;
 import frc.robot.commands.Drive;
 import frc.robot.extra.BrushlessMotor;
 
@@ -20,10 +21,10 @@ import frc.robot.extra.BrushlessMotor;
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static BrushlessMotor FL = new BrushlessMotor(3);
-  public static BrushlessMotor FR = new BrushlessMotor(0);
-  public static BrushlessMotor BL = new BrushlessMotor(2);
-  public static BrushlessMotor BR = new BrushlessMotor(1);
+  public static BrushlessMotor FL = new BrushlessMotor(RobotMap.FL_PORT);
+  public static BrushlessMotor FR = new BrushlessMotor(RobotMap.FR_PORT);
+  public static BrushlessMotor BL = new BrushlessMotor(RobotMap.BL_PORT);
+  public static BrushlessMotor BR = new BrushlessMotor(RobotMap.BR_PORT);
 
   public static SpeedControllerGroup leftMotor = new SpeedControllerGroup(FL, BL);
   public static SpeedControllerGroup rightMotor = new SpeedControllerGroup(FR, BR);

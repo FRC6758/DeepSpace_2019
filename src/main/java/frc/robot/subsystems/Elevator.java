@@ -26,16 +26,17 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    elevator.setClosedLoopRampRate(10);
+    // Set the --default command for a subsystem here.
      setDefaultCommand(new OperationElevator());
+     elevator.setOpenLoopRampRate(RobotMap.ELEVATOR_RAMP_RATE);
   }
 
   public void zero(){
     while(!Elevator.limit.get()){
-      Elevator.elevator.set(-.1);
+      Elevator.elevator.set(-RobotMap.ELEVATOR_ZEROING);
     }
     Elevator.elevator.reset();
     System.out.println("Elevator Ready!");
   }
+
 }

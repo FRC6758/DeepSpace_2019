@@ -14,6 +14,7 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Grabber;
 
 public class GrabbyBoi extends Command {
   public GrabbyBoi() {
@@ -30,13 +31,13 @@ public class GrabbyBoi extends Command {
   @Override
   protected void execute() {
     int pov = OI.stick.getPOV(); 
-    System.out.println("Joystick POV: " + pov);
-    if(pov == 0) Robot.m_grabber.kicker.set(ControlMode.PercentOutput, RobotMap.KICKER_SPEED);
-    else if(pov == 180) Robot.m_grabber.kicker.set(ControlMode.PercentOutput, -RobotMap.KICKER_SPEED);
-    else Robot.m_grabber.kicker.set(ControlMode.PercentOutput, 0);
-    if(OI.stick.getRawButton(1)) Robot.m_grabber.arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
-    else Robot.m_grabber.arms.set(ControlMode.PercentOutput, -.01);
-    if(OI.stick.getRawButton(2) || OI.controller.getAButton()) Robot.m_grabber.pushHatch();
+    //System.out.println("Joystick POV: " + pov);
+    if(pov == 0) Grabber.kicker.set(ControlMode.PercentOutput, RobotMap.KICKER_SPEED);
+    else if(pov == 180) Grabber.kicker.set(ControlMode.PercentOutput, -RobotMap.KICKER_SPEED);
+    else Grabber.kicker.set(ControlMode.PercentOutput, 0);
+    if(OI.stick.getRawButton(RobotMap.CLOSE_GRABBER)) Grabber.arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
+    else Robot.m_grabber.open();
+    if(OI.stick.getRawButton(RobotMap.HATCH_KICKER)) Robot.m_grabber.pushHatch();
 		else Robot.m_grabber.pullHatch();
   }
 

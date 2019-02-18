@@ -7,55 +7,51 @@
 
 package frc.robot.commands;
 
-import java.sql.DriverPropertyInfo;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Grabber;
 
-public class DriveForward extends Command {
- private double goal;
-  public DriveForward(double distance) {
-    goal = distance;
+public class cargoGrab extends Command {
+  boolean open;
+
+  public cargoGrab() {
     // Use requires() here to declare subsystem dependencies
-      requires(Robot.m_drivetrain);
+    requires(Robot.m_grabber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
-  Robot.m_drivetrain.resetEncoders();
+    open = (RobotMap.ARM_90 > Grabber.enc.getRaw());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  if(Robot.m_drivetrain.getRight() < goal) DriveTrain.rightMotor.set(RobotMap.AUTON_SPEED);
-  else DriveTrain.rightMotor.stopMotor();
-  if(Robot.m_drivetrain.getLeft() < goal) DriveTrain.leftMotor.set(RobotMap.AUTON_SPEED);
-  else DriveTrain.leftMotor.stopMotor();
-
+    if(open) Robot.m_grabber.close();
+    else Robot.m_grabber.open();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Robot.m_drivetrain.getRight() > goal && Robot.m_drivetrain.getLeft() > goal) || OI.stick.getY() > .1 || OI.stick.getY() < -.1;
+    if(open) return Grabber.enc.getRaw() < RobotMap.ARM_90;
+    return Grabber.enc.getRaw() > RobotMap.ARM_90;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_drivetrain.stop();
-    System.out.println("DriveForward Completed");
+    Grabber.arms.set(ControlMode.PercentOutput, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Grabber.arms.set(ControlMode.PercentOutput, 0);
   }
 }

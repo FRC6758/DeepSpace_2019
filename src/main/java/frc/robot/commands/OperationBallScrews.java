@@ -32,18 +32,20 @@ public class OperationBallScrews extends Command {
   protected void execute() {
    // int pov = OI.controller.getPOV();
 
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
-    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft) > 0) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.SCREW_SPEED);
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)) Robot.m_ballScrews.downFront();
+    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kRight) > 0) Robot.m_ballScrews.upFront(OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
+    else BallScrews.BallScrewOne.set(ControlMode.PercentOutput, 0);
 
-    if(OI.controller.getBumper(GenericHID.Hand.kRight)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);     
-    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kRight) > 0) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, -RobotMap.SCREW_SPEED);
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)) Robot.m_ballScrews.downBack();
+    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft) > 0) Robot.m_ballScrews.upBack(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
+    else BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, 0);
 
     if(OI.controller.getXButton()) Robot.m_ballScrews.up();
     else if(OI.controller.getYButton()) Robot.m_ballScrews.down();
-    else Robot.m_ballScrews.stop();
 
-    // if(OI.controller.getAButton()) Robot.m_ballScrews.forward();
-    // else Robot.m_ballScrews.stopForward();
+    if(OI.controller.getAButton()) Robot.m_ballScrews.forward();
+    else if(OI.controller.getBButton()) Robot.m_ballScrews.backward();
+    else Robot.m_ballScrews.stopForward();
   }
 
   // Make this return true when this Command no longer needs to run execute()
