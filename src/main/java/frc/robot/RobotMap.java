@@ -53,6 +53,8 @@ public class RobotMap {
   //===ELEVATOR CONTROLS===
   //DIO
   public static final int ELEVATOR_LIMIT_SWITCH = 0;
+  public static final int ELEVATOR_ENC_A_PORT = 0;
+  public static final int ELEVATOR_ENC_B_PORT = 0;
 
   //Motor Controllers
   public static final int ELEVATOR_MOTOR = 4;
@@ -142,4 +144,17 @@ public class RobotMap {
 
   //Encoder Values
   public static final int ELEVATOR_WARNING = 15;
+
+  //Encoder Ports
+  public static final int FRONT_ENC_A_PORT = 0;
+  public static final int FRONT_ENC_B_PORT = 0;
+  public static final int BACK_ENC_A_PORT = 0;
+  public static final int BACK_ENC_B_PORT = 0;
+
+  //Limit Switch Ports
+  public static final int FRONT_TOP_LIMIT_PORT = 0;
+  public static final int FRONT_BOTTOM_LIMIT_PORT = 0;
+  public static final int BACK_TOP_LIMIT_PORT = 0;
+  public static final int BACK_BOTTOM_LIMIT_PORT = 0;
+
 }

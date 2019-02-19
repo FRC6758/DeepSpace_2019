@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.OperationBallScrews;
@@ -25,10 +26,12 @@ public class BallScrews extends Subsystem {
   public static TalonSRX BallScrewOne = new TalonSRX(RobotMap.SCREW_ONE_CONTROLLER);
   public static TalonSRX BallScrewTwo = new TalonSRX(RobotMap.SCREW_TWO_CONTROLLER);
   public static TalonSRX driver = new TalonSRX(RobotMap.SCREW_GO);
-  public static DigitalInput limitTopBack = new DigitalInput(0);
-  public static DigitalInput limitBottomBack = new DigitalInput(1);
-  public static DigitalInput limitTopFront = new DigitalInput(2);
-  public static DigitalInput limitBottomFront = new DigitalInput(3);
+  public static Encoder encFront = new Encoder(RobotMap.FRONT_ENC_A_PORT, RobotMap.FRONT_ENC_B_PORT);
+  public static Encoder encBack = new Encoder(RobotMap.BACK_ENC_B_PORT, RobotMap.BACK_ENC_B_PORT);
+  public static DigitalInput limitTopBack = new DigitalInput(RobotMap.BACK_TOP_LIMIT_PORT);
+  public static DigitalInput limitBottomBack = new DigitalInput(RobotMap.BACK_BOTTOM_LIMIT_PORT);
+  public static DigitalInput limitTopFront = new DigitalInput(RobotMap.FRONT_TOP_LIMIT_PORT);
+  public static DigitalInput limitBottomFront = new DigitalInput(RobotMap.FRONT_BOTTOM_LIMIT_PORT);
 
 
 

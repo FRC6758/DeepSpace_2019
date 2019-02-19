@@ -18,12 +18,13 @@ public class BrushlessMotor extends CANSparkMax{
     private static final int PULSES_PER_INCH = 24;
     private static final double CONVERSTION_FACTOR = .00243;
     private static final double ANGLE_FACTOR = 1;
-    private static double offset;
+    private double offset;
     CANEncoder encoder;
 
     public BrushlessMotor(int deviceID){
         super(deviceID, MotorType.kBrushless);
-        encoder = this.getEncoder();
+        this.encoder = this.getEncoder();
+        this.offset = encoder.getPosition();
     }
 
     public double getSpeed(){
@@ -37,7 +38,7 @@ public class BrushlessMotor extends CANSparkMax{
     }
 
     public void reset(){
-        offset = encoder.getPosition();
+        this.offset = encoder.getPosition();
     }
 
     public double getRaw(){
@@ -45,14 +46,14 @@ public class BrushlessMotor extends CANSparkMax{
     }
 
     public double getPosition(){
-        return encoder.getPosition() - offset;
+        return encoder.getPosition() -  this.offset;
     }
 
     public double getAngle(){
-        return (encoder.getPosition() - offset) / ANGLE_FACTOR;
+        return (encoder.getPosition() - this.offset) / ANGLE_FACTOR;
     }
 
     public double getDistance(){
-        return (encoder.getPosition() - offset) / PULSES_PER_INCH;
+        return (encoder.getPosition() - this.offset) / PULSES_PER_INCH;
     }
 }
