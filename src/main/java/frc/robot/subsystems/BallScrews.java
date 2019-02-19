@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.OperationBallScrews;
@@ -24,7 +25,13 @@ public class BallScrews extends Subsystem {
   public static TalonSRX BallScrewOne = new TalonSRX(RobotMap.SCREW_ONE_CONTROLLER);
   public static TalonSRX BallScrewTwo = new TalonSRX(RobotMap.SCREW_TWO_CONTROLLER);
   public static TalonSRX driver = new TalonSRX(RobotMap.SCREW_GO);
-  
+  public static DigitalInput limitTopBack = new DigitalInput(0);
+  public static DigitalInput limitBottomBack = new DigitalInput(1);
+  public static DigitalInput limitTopFront = new DigitalInput(2);
+  public static DigitalInput limitBottomFront = new DigitalInput(3);
+
+
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -39,19 +46,19 @@ public class BallScrews extends Subsystem {
   }
 
   public void downFront(){
-      BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.INDIV_SCREW_SPEED_DOWN);
+      if(!limitTopFront.get())BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.INDIV_SCREW_SPEED_DOWN);
   }
 
   public void upFront(double speed){
-    BallScrewOne.set(ControlMode.PercentOutput, speed);
+    if(!limitBottomFront.get()) BallScrewOne.set(ControlMode.PercentOutput, speed);
   }
 
   public void downBack(){
-    BallScrewTwo.set(ControlMode.PercentOutput, -RobotMap.INDIV_SCREW_SPEED_DOWN);
+    if(!limitTopBack.get()) BallScrewTwo.set(ControlMode.PercentOutput, -RobotMap.INDIV_SCREW_SPEED_DOWN);
   }
 
   public void upBack(double speed){
-    BallScrewTwo.set(ControlMode.PercentOutput, speed);
+    if(!limitBottomBack.get()) BallScrewTwo.set(ControlMode.PercentOutput, speed);
   }
 
   public void down(){
