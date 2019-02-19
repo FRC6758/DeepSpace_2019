@@ -28,9 +28,15 @@ public class Drive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Elevator.elevator.getPosition() > 60) DriveTrain.drive.arcadeDrive(OI.stick.getY()*RobotMap.ANTITIP_2, OI.stick.getTwist()*RobotMap.ANTITIP_2);
-    else if(Elevator.elevator.getPosition() > 30) DriveTrain.drive.arcadeDrive(OI.stick.getY()*RobotMap.ANTITIP_1, OI.stick.getTwist()*RobotMap.ANTITIP_1);
-    else DriveTrain.drive.arcadeDrive(OI.stick.getY(), OI.stick.getTwist());
+
+    if(RobotMap.DRIVE_DEBUG){
+      //debug drive here
+      System.out.println("Joystick Twist: " + OI.stick.getTwist());
+    }
+
+    if(Elevator.elevator.getPosition() > RobotMap.ELEVATOR_MIDDLISH_LIMIT) DriveTrain.drive.arcadeDrive(-OI.stick.getY()*RobotMap.ANTITIP_2, OI.stick.getTwist()*RobotMap.ANTITIP_2);
+    else if(Elevator.elevator.getPosition() > RobotMap.ELEVATOR_MIDDLE_LIMIT) DriveTrain.drive.arcadeDrive(-OI.stick.getY()*RobotMap.ANTITIP_1, OI.stick.getTwist()*RobotMap.ANTITIP_1);
+    else DriveTrain.drive.arcadeDrive(-OI.stick.getY(), OI.stick.getTwist());
   }
 
   // Make this return true when this Command no longer needs to run execute()

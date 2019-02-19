@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.OperationBallScrews;
@@ -23,6 +24,13 @@ public class BallScrews extends Subsystem {
 
   public static TalonSRX BallScrewOne = new TalonSRX(RobotMap.SCREW_ONE_CONTROLLER);
   public static TalonSRX BallScrewTwo = new TalonSRX(RobotMap.SCREW_TWO_CONTROLLER);
+  public static TalonSRX driver = new TalonSRX(RobotMap.SCREW_GO);
+  public static DigitalInput limitTopBack = new DigitalInput(0);
+  public static DigitalInput limitBottomBack = new DigitalInput(1);
+  public static DigitalInput limitTopFront = new DigitalInput(2);
+  public static DigitalInput limitBottomFront = new DigitalInput(3);
+
+
 
   @Override
   public void initDefaultCommand() {
@@ -31,18 +39,48 @@ public class BallScrews extends Subsystem {
   }
 
   public void up(){
-    BallScrewOne.set(ControlMode.PercentOutput, -1);
-    BallScrewTwo.set(ControlMode.PercentOutput, -1);
-    if(!(Elevator.elevator.getPosition() < 10)) System.out.println("PUT ELEVATOR DOWN BEFORE USING BALL SCREWS!");
+    //TODO: MAKE CONSTANTS FOR THESE IN ROBOTMAP.JAVA
+    BallScrewOne.set(ControlMode.PercentOutput, -.8);
+    BallScrewTwo.set(ControlMode.PercentOutput, -.65);
+    if(!(Elevator.elevator.getPosition() < RobotMap.ELEVATOR_WARNING)) System.out.println("PUT ELEVATOR DOWN BEFORE USING BALL SCREWS!");
+  }
+
+  public void downFront(){
+      if(!limitTopFront.get())BallScrewOne.set(ControlMode.PercentOutput, -RobotMap.INDIV_SCREW_SPEED_DOWN);
+  }
+
+  public void upFront(double speed){
+    if(!limitBottomFront.get()) BallScrewOne.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void downBack(){
+    if(!limitTopBack.get()) BallScrewTwo.set(ControlMode.PercentOutput, -RobotMap.INDIV_SCREW_SPEED_DOWN);
+  }
+
+  public void upBack(double speed){
+    if(!limitBottomBack.get()) BallScrewTwo.set(ControlMode.PercentOutput, speed);
   }
 
   public void down(){
-    BallScrewOne.set(ControlMode.PercentOutput, 1);
-    BallScrewTwo.set(ControlMode.PercentOutput, 1);
-    if(!(Elevator.elevator.getPosition() < 10)) System.out.println("PUT ELEVATOR DOWN BEFORE USING BALL SCREWS!");
+    //TODO: MAKE THESE CONSTANTS IN ROBOTMAP.JAVA
+    BallScrewOne.set(ControlMode.PercentOutput, .8);
+    BallScrewTwo.set(ControlMode.PercentOutput, .8);
+    if(!(Elevator.elevator.getPosition() < RobotMap.ELEVATOR_WARNING)) System.out.println("PUT ELEVATOR DOWN BEFORE USING BALL SCREWS!");
   }
   public void stop(){
     BallScrewOne.set(ControlMode.PercentOutput, 0);
     BallScrewTwo.set(ControlMode.PercentOutput, 0);
+  }
+
+  public void stopForward(){
+    driver.set(ControlMode.PercentOutput, 0);
+  }
+
+  public void forward(){
+    driver.set(ControlMode.PercentOutput, RobotMap.BALL_BOI);
+  }
+
+  public void backward(){
+    driver.set(ControlMode.PercentOutput, -RobotMap.BALL_BOI);
   }
 }

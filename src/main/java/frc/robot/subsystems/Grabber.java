@@ -25,15 +25,24 @@ public class Grabber extends Subsystem {
 
   public static TalonSRX arms = new TalonSRX(RobotMap.ARM_CONTROLLER);
   public static TalonSRX kicker = new TalonSRX(RobotMap.FLYWHEELS_CONTROLLER);
-  public static Solenoid puncher = new Solenoid(0);
+  //public static Solenoid puncher = new Solenoid(RobotMap.AIR_BOI);
+  //public static Solenoid preloader = new Solenoid(RobotMap.PRE_AIR_BOI);
 
-  public static Encoder enc = new Encoder(0, 1);
+  //public static Encoder enc = new Encoder(RobotMap.GRABBER_ENC_PORT_A, RobotMap.GRABBER_ENC_PORT_B);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     setDefaultCommand(new GrabbyBoi());
   }
+
+  // public void preloadExtend(){
+  //   preloader.set(true);
+  // }
+
+  // public void preloadRetract(){
+  //   preloader.set(false);
+  // }
 
   public void dispenseCargo(){
     kicker.set(ControlMode.PercentOutput, RobotMap.KICKER_SPEED);
@@ -48,10 +57,16 @@ public class Grabber extends Subsystem {
   }
 
   public void open(){
-    arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
+    //if(enc.getRaw() > RobotMap.ARM_OPEN) arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
   }
 
-  public void dispenseHatch(){
-    puncher.set(true);
-  }
+  // public void pushHatch(){
+  //     Grabber.puncher.set(true);
+  // }
+
+  // public void pullHatch(){
+  //   Grabber.puncher.set(false);
+
+  // }
+
 }

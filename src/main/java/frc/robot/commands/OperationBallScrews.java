@@ -30,17 +30,28 @@ public class OperationBallScrews extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
     int pov = OI.controller.getPOV();
+    
+    if(RobotMap.DEBUGGING_BALLS) {
+      //debugging stuff
 
-    if(OI.controller.getBumper(GenericHID.Hand.kLeft)) BallScrews.BallScrewOne.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);
-    else BallScrews.BallScrewOne.set(ControlMode.PercentOutput, -OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
+    }
+    
+    if(OI.controller.getBumper(GenericHID.Hand.kRight)) Robot.m_ballScrews.downFront();
+    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kRight) > 0) Robot.m_ballScrews.upFront(OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
+    else BallScrews.BallScrewOne.set(ControlMode.PercentOutput, 0);
 
-    if(OI.controller.getBumper(GenericHID.Hand.kRight)) BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, RobotMap.SCREW_SPEED);     
-    else BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, -OI.controller.getTriggerAxis(GenericHID.Hand.kRight));
+    if(OI.controller.getBumper(GenericHID.Hand.kLeft)) Robot.m_ballScrews.downBack();
+    else if(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft) > 0) Robot.m_ballScrews.upBack(OI.controller.getTriggerAxis(GenericHID.Hand.kLeft));
+    else BallScrews.BallScrewTwo.set(ControlMode.PercentOutput, 0);
 
-    if(pov > 345 || pov < 15) Robot.m_ballScrews.up();
-    else if(pov < 190 && pov > 170) Robot.m_ballScrews.down();
-    else Robot.m_ballScrews.stop();
+    if(OI.controller.getXButton()) Robot.m_ballScrews.up();
+    else if(OI.controller.getYButton()) Robot.m_ballScrews.down();
+
+    if(OI.controller.getAButton()) Robot.m_ballScrews.forward();
+    else if(OI.controller.getBButton()) Robot.m_ballScrews.backward();
+    else Robot.m_ballScrews.stopForward();
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANDigitalInput.LimitSwitch;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.OperationElevator;
@@ -19,10 +22,21 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static BrushlessMotor elevator = new BrushlessMotor(RobotMap.ELEVATOR_MOTOR);
+  public static DigitalInput limit = new DigitalInput(RobotMap.ELEVATOR_LIMIT_SWITCH);
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
+    // Set the --default command for a subsystem here.
      setDefaultCommand(new OperationElevator());
+     elevator.setOpenLoopRampRate(RobotMap.ELEVATOR_RAMP_RATE);
   }
+
+  public void zero(){
+    while(!Elevator.limit.get()){
+      Elevator.elevator.set(-RobotMap.ELEVATOR_ZEROING);
+    }
+    Elevator.elevator.reset();
+    System.out.println("Elevator Ready!");
+  }
+
 }
