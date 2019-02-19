@@ -36,7 +36,7 @@ import frc.robot.subsystems.Grabber;
       //Driving in inches
       //Driving in degrees
 public class Robot extends TimedRobot {
-  public static Compressor compressor = new Compressor(0);
+  // public static Compressor compressor = new Compressor(0);
   public static BallScrews m_ballScrews = new BallScrews();
   public static OI m_oi;
   public static DriveTrain m_drivetrain = new DriveTrain();
@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    compressor.setClosedLoopControl(true);
+    // compressor.setClosedLoopControl(true);
     staticCam = CameraServer.getInstance().startAutomaticCapture(0); 
     // elevatorCam = CameraServer.getInstance().startAutomaticCapture(1);
     staticCam.setFPS(RobotMap.CAMERA_A_FPS);

@@ -41,13 +41,13 @@ public class GrabbyBoi extends Command {
     else Grabber.kicker.set(ControlMode.PercentOutput, 0);
     if(OI.stick.getRawButton(RobotMap.CLOSE_GRABBER)) Grabber.arms.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
     else Robot.m_grabber.open();
-    if(OI.stick.getRawButton(RobotMap.HATCH_KICKER)) Robot.m_grabber.pushHatch();
-    else Robot.m_grabber.pullHatch();
+    // if(OI.stick.getRawButton(RobotMap.HATCH_KICKER)) Robot.m_grabber.pushHatch();
+    // else Robot.m_grabber.pullHatch();
     
-    if(OI.controller.getBackButton()) new CargoGrab();
+   // if(OI.controller.getBackButton()) new CargoGrab();
 
-    if(OI.controller.getStartButton()) Robot.m_grabber.preloadExtend();
-    else Robot.m_grabber.preloadRetract();
+    // if(OI.controller.getStartButton()) Robot.m_grabber.preloadExtend();
+    // else Robot.m_grabber.preloadRetract();
   }
 
   // Make this return true when this Command no longer needs to run execute()

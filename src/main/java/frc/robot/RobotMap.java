@@ -47,7 +47,7 @@ public class RobotMap {
   //Motor Controllers
   public static final int FL_PORT = 3;
   public static final int BL_PORT = 2;
-  public static final int FR_PORT = 0;
+  public static final int FR_PORT = 10;
   public static final int BR_PORT = 1;
 
   //===ELEVATOR CONTROLS===
