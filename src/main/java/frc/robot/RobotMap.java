@@ -54,7 +54,7 @@ public class RobotMap {
   //DIO
   public static final int ELEVATOR_LIMIT_SWITCH = 0;
   public static final int ELEVATOR_ENC_A_PORT = 0;
-  public static final int ELEVATOR_ENC_B_PORT = 0;
+  public static final int ELEVATOR_ENC__PORT = 0;
 
   //Motor Controllers
   public static final int ELEVATOR_MOTOR = 4;
