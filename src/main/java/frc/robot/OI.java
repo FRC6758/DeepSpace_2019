@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Controller;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,7 +25,13 @@ public class OI {
   // number it is.
   public static Joystick stick = new Joystick(RobotMap.JOYSTICK_PORT);
   public static XboxController controller = new XboxController(RobotMap.CONTROLLER_PORT);
-  // Button button = new JoystickButton(stick, buttonNumber);
+  
+  Button hatch_lvl_1 = new JoystickButton(stick, RobotMap.HATCH_LVL_1);
+  Button cargo_lvl_1 = new JoystickButton(stick, RobotMap.CARGO_LVL_1);
+  Button hatch_lvl_2 = new JoystickButton(stick, RobotMap.HATCH_LVL_2);
+  Button cargo_lvl_2 = new JoystickButton(stick, RobotMap.CARGO_LVL_2);
+  Button hatch_lvl_3 = new JoystickButton(stick, RobotMap.HATCH_LVL_3);
+  Button cargo_lvl_3 = new JoystickButton(stick, RobotMap.CARGO_LVL_3);
 
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
@@ -35,7 +43,12 @@ public class OI {
 
   // Start the command when the button is pressed and let it run the command
   // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+  hatch_lvl_1.whenPressed(new ElevatorLevels(Level.HATCH_1));
+  cargo_lvl_1.whenPressed(new ElevatorLevels(Level.CARGO_1));
+  hatch_lvl_2.whenPressed(new ElevatorLevels(Level.HATCH_2));
+  cargo_lvl_2.whenPressed(new ElevatorLevels(Level.CARGO_2));
+  hatch_lvl_3.whenPressed(new ElevatorLevels(Level.HATCH_3));
+  cargo_lvl_3.whenPressed(new ElevatorLevels(Level.CARGO_3));
 
   // Run the command while the button is being held down and interrupt it once
   // the button is released.

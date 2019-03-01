@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.ElevatorLevels.Level;
 import frc.robot.subsystems.Elevator;
 
 public class OperationElevator extends Command {
@@ -38,17 +37,19 @@ public class OperationElevator extends Command {
       System.out.println("Encoder VALUES: " + Elevator.elevator.getPosition());
     }
 
-    //ADDED: bottom and top limits to avoid damage
-    // if(pov == 0 && Elevator.elevator.getPosition() < RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
-    // else if (pov == 180 && Elevator.elevator.getPosition() > RobotMap.ELEVATOR_BOTTOM_LIMIT && Elevator.limit.get()) Elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
-    // else if (Elevator.elevator.getPosition() > RobotMap.ELEVATOR_MIDDLE_LIMIT && Elevator.elevator.getPosition()< RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_STALL_POWER);
-    // else Elevator.elevator.stopMotor();
-    if(OI.stick.getRawButtonPressed(RobotMap.HATCH_LVL_1)) new ElevatorLevels(Level.HATCH_1).start();
-    else if(OI.stick.getRawButtonPressed(RobotMap.CARGO_LVL_1)) new ElevatorLevels(Level.CARGO_1).start();
-    else if(OI.stick.getRawButtonPressed(RobotMap.HATCH_LVL_2)) new ElevatorLevels(Level.HATCH_2).start();
-    else if(OI.stick.getRawButtonPressed(RobotMap.CARGO_LVL_2)) new ElevatorLevels(Level.CARGO_2).start();
-    else if(OI.stick.getRawButtonPressed(RobotMap.HATCH_LVL_3)) new ElevatorLevels(Level.HATCH_3).start();
-    else if(OI.stick.getRawButtonPressed(RobotMap.CARGO_LVL_3)) new ElevatorLevels(Level.CARGO_3).start();
+    //TODO: WHY THIS HURT THINGS?
+    if(pov == 0 && Elevator.elevator.getPosition() < RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_SPEED_UP);
+    else if (pov == 180 && Elevator.elevator.getPosition() > RobotMap.ELEVATOR_BOTTOM_LIMIT && Elevator.limit.get()) Elevator.elevator.set(-RobotMap.ELEVATOR_SPEED_DOWN);
+    else if (Elevator.elevator.getPosition() > RobotMap.ELEVATOR_MIDDLE_LIMIT && Elevator.elevator.getPosition()< RobotMap.ELEVATOR_TOP_LIMIT) Elevator.elevator.set(RobotMap.ELEVATOR_STALL_POWER);
+    else Elevator.elevator.stopMotor();
+
+    //===UPDATED: NOW DEFINED IN OI.java===
+    // if(OI.stick.getRawButtonPressed(RobotMap.HATCH_LVL_1)) new ElevatorLevels(Level.HATCH_1).start();
+    // else if(OI.stick.getRawButtonPressed(RobotMap.CARGO_LVL_1)) new ElevatorLevels(Level.CARGO_1).start();
+    // else if(OI.stick.getRawButtonPressed(RobotMap.HATCH_LVL_2)) new ElevatorLevels(Level.HATCH_2).start();
+    // else if(OI.stick.getRawButtonPressed(RobotMap.CARGO_LVL_2)) new ElevatorLevels(Level.CARGO_2).start();
+    // else if(OI.stick.getRawButtonPressed(RobotMap.HATCH_LVL_3)) new ElevatorLevels(Level.HATCH_3).start();
+    // else if(OI.stick.getRawButtonPressed(RobotMap.CARGO_LVL_3)) new ElevatorLevels(Level.CARGO_3).start();
   }
 
   // Make this return true when this Command no longer needs to run execute()

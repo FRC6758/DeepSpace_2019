@@ -15,7 +15,7 @@ import frc.robot.subsystems.Elevator;
 
 public class ElevatorLevels extends Command {
 
-    enum Level{
+    public static enum Level{
         HATCH_1, HATCH_2, HATCH_3, CARGO_1, CARGO_2, CARGO_3;
     }
 

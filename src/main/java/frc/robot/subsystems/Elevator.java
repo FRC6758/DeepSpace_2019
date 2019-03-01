@@ -8,35 +8,26 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.OperationElevator;
 import frc.robot.extra.BrushlessMotor;
 
-/**
- * Add your docs here.
- */
 public class Elevator extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
   public static BrushlessMotor elevator = new BrushlessMotor(RobotMap.ELEVATOR_MOTOR);
   public static DigitalInput limit = new DigitalInput(RobotMap.ELEVATOR_LIMIT_SWITCH);
 
-  public static Encoder enc = new Encoder(RobotMap.ELEVATOR_ENC_A_PORT, RobotMap.ELEVATOR_ENC_B_PORT);
-
   @Override
   public void initDefaultCommand() {
-    // Set the --default command for a subsystem here.
      setDefaultCommand(new OperationElevator());
      elevator.setOpenLoopRampRate(RobotMap.ELEVATOR_RAMP_RATE);
   }
 
-  public void zero(){
-    while(!Elevator.limit.get()){
-      Elevator.elevator.set(-RobotMap.ELEVATOR_ZEROING);
-    }
-    Elevator.elevator.reset();
-    System.out.println("Elevator Ready!");
-  }
+  // public void zero(){
+  //   while(!Elevator.limit.get()){
+  //     Elevator.elevator.set(-RobotMap.ELEVATOR_ZEROING);
+  //   }
+  //   Elevator.elevator.reset();
+  //   System.out.println("Elevator Ready!");
+  // }
 }

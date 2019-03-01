@@ -35,7 +35,6 @@ public class OperationBallScrews extends Command {
     
     if(RobotMap.DEBUGGING_BALLS) {
       //debugging stuff
-
     }
     
     if(OI.controller.getBumper(GenericHID.Hand.kRight)) Robot.m_ballScrews.downFront();

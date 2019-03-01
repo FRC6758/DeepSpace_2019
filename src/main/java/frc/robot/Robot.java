@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Auton;
 import frc.robot.subsystems.BallScrews;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
@@ -29,19 +30,11 @@ import frc.robot.subsystems.Grabber;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-
- //TODO:
- //ELEVATOR ZERO
- //FIGURE OUT ENCODER VALUES
-      //Driving in inches
-      //Driving in degrees
 public class Robot extends TimedRobot {
   // public static Compressor compressor = new Compressor(0);
   public static BallScrews m_ballScrews = new BallScrews();
-  public static OI m_oi;
   public static DriveTrain m_drivetrain = new DriveTrain();
   Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
   public static Elevator m_elevator = new Elevator();
   public static Grabber m_grabber = new Grabber();
   UsbCamera staticCam, elevatorCam;
@@ -59,8 +52,6 @@ public class Robot extends TimedRobot {
     staticCam.setResolution(RobotMap.CAMERA_A_WIDTH, RobotMap.CAMERA_A_HEIGHT);
     // elevatorCam.setFPS(RobotMap.CAMERA_B_FPS);
     // elevatorCam.setResolution(RobotMap.CAMERA_A_WIDTH, RobotMap.CAMERA_B_HEIGHT);
-    m_oi = new OI();
-    SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
@@ -102,19 +93,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
-
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
-
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+    m_autonomousCommand = new Auton();
+    m_autonomousCommand.start();
   }
 
   /**
@@ -127,13 +107,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
+    m_autonomousCommand.cancel();
+    m_autonomousCommand.close();
   }
 
   /**

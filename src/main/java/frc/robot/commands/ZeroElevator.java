@@ -40,7 +40,7 @@ public class ZeroElevator extends Command {
   @Override
   protected void end() {
     System.out.println("Elevator Zeroed.");
-    Elevator.enc.reset();
+    Elevator.elevator.reset();
   }
 
   // Called when another command which requires one or more of the same
