@@ -36,7 +36,7 @@ import frc.robot.subsystems.Grabber;
       //Driving in inches
       //Driving in degrees
 public class Robot extends TimedRobot {
-  // public static Compressor compressor = new Compressor(0);
+  public static Compressor compressor = new Compressor(0);
   public static BallScrews m_ballScrews = new BallScrews();
   public static OI m_oi;
   public static DriveTrain m_drivetrain = new DriveTrain();
@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public static Elevator m_elevator = new Elevator();
   public static Grabber m_grabber = new Grabber();
-  UsbCamera staticCam, elevatorCam;
+  // UsbCamera staticCam, elevatorCam;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -53,10 +53,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // compressor.setClosedLoopControl(true);
-    staticCam = CameraServer.getInstance().startAutomaticCapture(0); 
-    // elevatorCam = CameraServer.getInstance().startAutomaticCapture(1);
-    staticCam.setFPS(RobotMap.CAMERA_A_FPS);
-    staticCam.setResolution(RobotMap.CAMERA_A_WIDTH, RobotMap.CAMERA_A_HEIGHT);
+    // staticCam = CameraServer.getInstance().startAutomaticCapture(0); 
+    // // elevatorCam = CameraServer.getInstance().startAutomaticCapture(1);
+    // staticCam.setFPS(RobotMap.CAMERA_A_FPS);
+    // staticCam.setResolution(RobotMap.CAMERA_A_WIDTH, RobotMap.CAMERA_A_HEIGHT);
     // elevatorCam.setFPS(RobotMap.CAMERA_B_FPS);
     // elevatorCam.setResolution(RobotMap.CAMERA_A_WIDTH, RobotMap.CAMERA_B_HEIGHT);
     m_oi = new OI();
