@@ -116,7 +116,7 @@ public class RobotMap {
 
   //Solenoids
   public static final int AIR_BOI = 7;
-  public static final int PRE_AIR_BOI = 0;
+  public static final int PRE_AIR_BOI = 1;
 
   //Speeds
   public static final double KICKER_SPEED = 1;
